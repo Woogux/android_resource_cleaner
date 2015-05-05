@@ -98,7 +98,7 @@ def delete_unused_values(p_source_path, p_force):
         if t_m_file:
             print '------------------------------------------------'
             item_count += 1
-            t_cur_file_path = t_m_file.group()
+            t_cur_file_path = os.path.join(p_source_path, t_m_file.group())
             print 'Value file path : ' + t_cur_file_path
             if t_cur_file_path != last_file_path:
                 if last_file_path.strip():

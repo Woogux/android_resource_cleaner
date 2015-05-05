@@ -28,8 +28,11 @@ def delete_unused_files(file_paths, backup_path, force):
                     os.remove(file_path)
                     print file_path + ' removed'
                     del_count += 1
-                else:
+                elif key == 'n':
                     print file_path + ' skipped'
+        except KeyboardInterrupt:
+            exit(1)
+
         except:
             print file_path + " didn't find"
     print 'Total   : ' + str(len(file_paths))
@@ -62,7 +65,7 @@ def find_unused_files(p_source_path, force):
     while line:
         t_m = file_pattern.match(line)
         if t_m:
-            file_paths.append(t_m.group())
+            file_paths.append(os.path.join(p_source_path, t_m.group()))
         line = out_put_file.readline()
     delete_unused_files(file_paths, backup_path, force)
     out_put_file.close()
